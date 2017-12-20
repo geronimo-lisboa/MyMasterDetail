@@ -3,40 +3,35 @@ class MastersDashboard extends React.Component{
         return(<div className="ui container">
                 <div className="ui dividing header">Master & Details</div>
                 <div className="ui grid">
-                    <div className="ui row centered"> AAA</div>
-                    <div className="ui row centered"> BBB</div>
+                    <div className="ui row"> <NewMasterForm /></div>
+                    <div className="ui row"> Lista de masters aqui</div>
                 </div>
                </div>                
         );
+    }
+}
+class NewMasterForm extends React.Component{
+    render(){
+        return(<div className="ui content">
+                <div>
+                    <button className="ui bottom attached green basic button">Novo</button>
+                </div>
+                <div>
+                    <div>
+                        <label className="ui right pointing label">Nome</label>
+                        <input className="ui input focus" type="text" />                
+                    </div>
+                    <div className='ui two bottom attached buttons'>
+                        <button className='ui basic blue button'>Salvar</button>
+                        <button className='ui basic red button'>Cancelar</button>
+                    </div>
+                </div>
+               </div>);
     }
 }
 
 
 /*
-class MastersDashboard extends React.Component{
-    render(){
-        return(<div class="ui four column grid">
-                 <NewMasterForm />
-                 <div>
-                    <MasterList />
-                 </div>
-               </div>                
-        );
-    }
-}
-
-class NewMasterForm extends React.Component{
-    render(){
-        return(<div class="column">
-                    <label >Nome</label>
-                    <input type="text"/>
-                <div class="column">
-                  <button >Criar</button>
-                  <button >Cancelar</button>
-                </div>
-               </div>);
-    }
-}
 
 class MasterList extends React.Component{
     render(){
