@@ -1,9 +1,23 @@
 class MastersDashboard extends React.Component{
     render(){
-        return(<div className="ui three column centered grid">
-                <h2 class="ui dividing centered header">Master Dashboard</h2>
+        return(<div className="ui container">
+                <div className="ui dividing header">Master & Details</div>
+                <div className="ui grid">
+                    <div className="ui row centered"> AAA</div>
+                    <div className="ui row centered"> BBB</div>
+                </div>
+               </div>                
+        );
+    }
+}
+
+
+/*
+class MastersDashboard extends React.Component{
+    render(){
+        return(<div class="ui four column grid">
                  <NewMasterForm />
-                 <div  className="column">
+                 <div>
                     <MasterList />
                  </div>
                </div>                
@@ -13,14 +27,12 @@ class MastersDashboard extends React.Component{
 
 class NewMasterForm extends React.Component{
     render(){
-        return(<div className='ui centered card'>
-                <div className='content' >
-                    <label className='ui right pointing label'>Nome</label>
-                    <input class="ui input focus" type="text"/>
-                </div>
-                <div className='ui two bottom attached buttons'>
-                <button className='ui basic blue button'>Criar</button>
-                <button className='ui basic red button'>Cancelar</button>
+        return(<div class="column">
+                    <label >Nome</label>
+                    <input type="text"/>
+                <div class="column">
+                  <button >Criar</button>
+                  <button >Cancelar</button>
                 </div>
                </div>);
     }
@@ -29,16 +41,16 @@ class NewMasterForm extends React.Component{
 class MasterList extends React.Component{
     render(){
         return(<div>
-                <Master />
-                <Master />
-                <Master />
+                <Master class="column" />
+                <Master class="column"/>
+                <Master class="column"/>
                 </div>);
     }
 }
 
 class Master extends React.Component{
     render(){
-        return(<div>
+        return(<div >
                 A master
                 <NewDetailForm />
                 <Detail />
@@ -62,6 +74,7 @@ class Detail extends React.Component{
                 </div>)
     }
 }
+*/
 //Responsável pela renderização do dashboard na div de id = content
 ReactDOM.render(
   <MastersDashboard />,
