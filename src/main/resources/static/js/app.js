@@ -58,9 +58,15 @@ class EditMasterForm extends React.Component{
     render(){
         return(
                 <div className="sixteen wide column">
-                    <label className="ui right pointing label">Nome</label>
-                    <input className="ui input focus" type="text"/>
-                    <button className='ui basic red button'>Fechar</button>                
+                <div className="ui grid">
+                    <div className="six wide column">
+                        <label className="ui right pointing label">Nome</label>
+                        <input className="ui input focus" type="text"/>
+                    </div>
+                    <div className="ten wide column"> 
+                        <button className='ui basic red button'>Fechar</button>
+                    </div>
+                </div>
                 </div>
         );
     }
