@@ -1,3 +1,4 @@
+//O componente-mestre da aplicação
 class MastersDashboard extends React.Component{
     render(){
         return(<div className="ui container">
@@ -12,7 +13,7 @@ class MastersDashboard extends React.Component{
         );
     }
 }
-
+//A tabela dos masters: contém a lista de masters e o cabeçalho de ordenação.
 class MasterTable extends React.Component{
     render(){
         return(
@@ -24,7 +25,7 @@ class MasterTable extends React.Component{
         );
     }
 }
-
+//O cabeçalho de ordenação dos masters
 class MasterHeader extends React.Component{
     render(){
         return(
@@ -32,12 +33,12 @@ class MasterHeader extends React.Component{
                 <div className="four wide column"><a>Id</a></div>
                 <div className="four wide column"><a>Nome</a></div>                
                 <div className="four wide column"><a>Quantidade</a></div>                                
-                <div className="two wide column"><a>.</a></div>
-                <div className="two wide column"><a>.</a></div>
+                <div className="two wide column"></div>
+                <div className="two wide column"></div>
             </div>);
     }
 }
-
+//O master. Contém o form de alteração de master e a lista de details
 class Master extends React.Component{
     render(){
         return(
@@ -45,9 +46,22 @@ class Master extends React.Component{
                 <div className="four wide column">1</div>
                 <div className="four wide column">Foo</div>                
                 <div className="four wide column">2</div>                                
-                <div className="two wide column"><button>Abrir</button></div>
-                <div className="two wide column"><button>Abrir</button></div>
+                <div className="two wide column"><button className="ui basic green button">Abrir</button></div>
+                <div className="two wide column"><button className="ui basic red button">Excluir</button></div>
+                <EditMasterForm />
             </div>
+        );
+    }
+}
+
+class EditMasterForm extends React.Component{
+    render(){
+        return(
+                <div className="sixteen wide column">
+                    <label className="ui right pointing label">Nome</label>
+                    <input className="ui input focus" type="text"/>
+                    <button className='ui basic red button'>Fechar</button>                
+                </div>
         );
     }
 }
@@ -73,45 +87,6 @@ class NewMasterForm extends React.Component{
 }
 
 
-/*
-
-class MasterList extends React.Component{
-    render(){
-        return(<div>
-                <Master class="column" />
-                <Master class="column"/>
-                <Master class="column"/>
-                </div>);
-    }
-}
-
-class Master extends React.Component{
-    render(){
-        return(<div >
-                A master
-                <NewDetailForm />
-                <Detail />
-                <Detail />
-                </div>);
-    }
-}
-
-class NewDetailForm extends React.Component{
-    render(){
-        return(<div>
-                New Detail Form
-                </div>)
-    }
-}
-
-class Detail extends React.Component{
-    render(){
-        return(<div>
-                A detail
-                </div>)
-    }
-}
-*/
 //Responsável pela renderização do dashboard na div de id = content
 ReactDOM.render(
   <MastersDashboard />,
