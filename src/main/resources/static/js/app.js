@@ -28,11 +28,12 @@ class MasterTable extends React.Component{
 class MasterHeader extends React.Component{
     render(){
         return(
-            <div className="ui grid dividing header">
-                <a>Id</a>
-                <a>Nome</a>
-                <a>Quantidade</a>
-                <a></a>
+            <div className="row grid">
+                <div className="four wide column"><a>Id</a></div>
+                <div className="four wide column"><a>Nome</a></div>                
+                <div className="four wide column"><a>Quantidade</a></div>                                
+                <div className="two wide column"><a>.</a></div>
+                <div className="two wide column"><a>.</a></div>
             </div>);
     }
 }
@@ -40,9 +41,13 @@ class MasterHeader extends React.Component{
 class Master extends React.Component{
     render(){
         return(
-        <div className="ui row">
-            A master
-        </div>
+            <div className="row">
+                <div className="four wide column">1</div>
+                <div className="four wide column">Foo</div>                
+                <div className="four wide column">2</div>                                
+                <div className="two wide column"><button>Abrir</button></div>
+                <div className="two wide column"><button>Abrir</button></div>
+            </div>
         );
     }
 }
