@@ -4,12 +4,49 @@ class MastersDashboard extends React.Component{
                 <div className="ui dividing header">Master & Details</div>
                 <div className="ui grid">
                     <div className="ui row"> <NewMasterForm /></div>
-                    <div className="ui row"> Lista de masters aqui</div>
+                    <div className="ui row">
+                        <MasterTable />
+                    </div>
                 </div>
                </div>                
         );
     }
 }
+
+class MasterTable extends React.Component{
+    render(){
+        return(
+            <div className="ui grid">
+                <MasterHeader/>
+                <Master/>
+                <Master/>
+            </div>
+        );
+    }
+}
+
+class MasterHeader extends React.Component{
+    render(){
+        return(
+            <div className="ui grid dividing header">
+                <a>Id</a>
+                <a>Nome</a>
+                <a>Quantidade</a>
+                <a></a>
+            </div>);
+    }
+}
+
+class Master extends React.Component{
+    render(){
+        return(
+        <div className="ui row">
+            A master
+        </div>
+        );
+    }
+}
+
 class NewMasterForm extends React.Component{
     render(){
         return(<div className="ui content">
