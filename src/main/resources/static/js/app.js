@@ -76,6 +76,15 @@ class MasterList extends React.Component{
     state={
         ordering:'id',
     };
+    orderByName=()=>{
+        this.setState({ordering:'name'});
+    };
+    orderByQtd=()=>{
+        this.setState({ordering:'qtd'});
+    };
+    orderById=()=>{
+        this.setState({ordering:'id'});
+    };
     render(){
         const orderedMasterList = this.props.masters.sort(
                 (a,b)=>{
@@ -99,7 +108,10 @@ class MasterList extends React.Component{
                 ));
         return(
             <div className="ui grid">
-                <MasterHeader/>
+                <MasterHeader
+                  orderByName = {this.orderByName}
+                  orderById = {this.orderById}
+                  orderByQtd = {this.orderByQtd}/>
                 {orderedMasterList}
             </div>
         );
@@ -110,9 +122,9 @@ class MasterHeader extends React.Component{
     render(){
         return(
             <div className="row grid">
-                <div className="four wide column"><a>Id</a></div>
-                <div className="four wide column"><a>Nome</a></div>                
-                <div className="four wide column"><a>Quantidade</a></div>                                
+                <div className="four wide column" onClick={this.props.orderById}><a>Id</a></div>
+                <div className="four wide column" onClick={this.props.orderByName}><a>Nome</a></div>                
+                <div className="four wide column" onClick={this.props.orderByQtd}><a>Quantidade</a></div>                                
                 <div className="two wide column"></div>
                 <div className="two wide column"></div>
             </div>);
