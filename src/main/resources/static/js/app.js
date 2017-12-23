@@ -11,11 +11,17 @@ class MastersDashboard extends React.Component{
         this.setState({masters:masterList});
     };
     
+    createNewMaster=(masterName)=>{
+        const newMaster={nome:masterName,};
+        client.createMaster(newMaster,()=>(client.getAllMasters(this.updateMasters)) );
+    }
+    
     render(){
         return(
                 <div className="ui container">
                     <div className="ui dividing header">Master & Details</div>
-                    <NewMasterForm />
+                    <NewMasterForm 
+                        createNewMaster={this.createNewMaster}/>
                     <MasterList 
                         masters={this.state.masters}
                     />
@@ -26,9 +32,17 @@ class MastersDashboard extends React.Component{
 class NewMasterForm extends React.Component{
     state={
         isOpen:false,
+        nomeInformado:"",
     }
     handleOpenFormClick = ()=>{this.setState({isOpen:true})};
     handleCloseFormClick = ()=>{this.setState({isOpen:false})}  ;
+    handleChangeNome = (e)=>{
+        this.setState({nomeInformado:e.target.value});
+    }
+    handleOnCriarNovoClick = ()=>{
+        this.props.createNewMaster(this.state.nomeInformado);
+        this.handleCloseFormClick();
+    }
     render(){
         if(this.state.isOpen===false){
             return(<div className="ui grid">
@@ -44,8 +58,8 @@ class NewMasterForm extends React.Component{
                     </div>
                     <div>
                         <label className="ui right pointing label">Nome</label>
-                        <input className="ui input focus" type="text" />
-                        <button className="ui basic green button">Criar</button>
+                        <input className="ui input focus" type="text" onChange={this.handleChangeNome}/>
+                        <button className="ui basic green button" onClick={this.handleOnCriarNovoClick}>Criar</button>
                     </div>
                    </div>);                        
         }

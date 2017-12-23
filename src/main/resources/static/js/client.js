@@ -12,7 +12,7 @@ window.client = (function () {
   }
   
   function createMaster(data, afterSave) {
-    return fetch('/newMaster', {
+    return fetch('/app/master', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
