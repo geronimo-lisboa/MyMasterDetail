@@ -42,8 +42,12 @@ class NewMasterForm extends React.Component{
                     <div className="sixteen wide column">
                         <i onClick={this.handleCloseFormClick} className="minus circle icon"></i>
                     </div>
-                    <div>...</div>
-                    </div>);                        
+                    <div>
+                        <label className="ui right pointing label">Nome</label>
+                        <input className="ui input focus" type="text" />
+                        <button className="ui basic green button">Criar</button>
+                    </div>
+                   </div>);                        
         }
     }
 }
