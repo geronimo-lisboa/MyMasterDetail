@@ -1,26 +1,19 @@
-//O componente-mestre da aplicação
 class MastersDashboard extends React.Component{
     render(){
-        return(<div className="ui container">
-                <div className="ui dividing header">Master & Details</div>
-                <div className="ui grid">
-                    <div className="ui row"> <NewMasterForm /></div>
-                    <div className="ui row">
-                        <MasterTable />
-                    </div>
-                </div>
-               </div>                
-        );
+        return(
+                <div className="ui container">
+                    <div className="ui dividing header">Master & Details</div>
+                    <MasterList />
+                </div>);
     }
 }
-//A tabela dos masters: contém a lista de masters e o cabeçalho de ordenação.
-class MasterTable extends React.Component{
+
+class MasterList extends React.Component{
     render(){
         return(
             <div className="ui grid">
                 <MasterHeader/>
-                <Master/>
-                <Master/>
+                <Master/>               
             </div>
         );
     }
@@ -38,7 +31,7 @@ class MasterHeader extends React.Component{
             </div>);
     }
 }
-//O master. Contém o form de alteração de master e a lista de details
+
 class Master extends React.Component{
     render(){
         return(
@@ -48,47 +41,48 @@ class Master extends React.Component{
                 <div className="four wide column">2</div>                                
                 <div className="two wide column"><button className="ui basic green button">Abrir</button></div>
                 <div className="two wide column"><button className="ui basic red button">Excluir</button></div>
-                <EditMasterForm />
+                <div className="sixteen wide column">
+                    <DetailTable />
+                </div>
             </div>
         );
     }
 }
 
-class EditMasterForm extends React.Component{
+class DetailTable extends React.Component{
     render(){
-        return(
-                <div className="sixteen wide column">
-                <div className="ui grid">
-                    <div className="six wide column">
-                        <label className="ui right pointing label">Nome</label>
-                        <input className="ui input focus" type="text"/>
-                    </div>
-                    <div className="ten wide column"> 
-                        <button className='ui basic red button'>Fechar</button>
-                    </div>
-                </div>
-                </div>
-        );
+        return(<div className="ui grid">
+                    <DetailHeader/>
+                    <Detail/>
+                    <Detail/>
+                </div>)
     }
 }
 
-class NewMasterForm extends React.Component{
+class DetailHeader extends React.Component{
     render(){
-        return(<div className="ui content">
-                <div>
-                    <button className="ui bottom attached green basic button">Novo</button>
-                </div>
-                <div>
-                    <div>
-                        <label className="ui right pointing label">Nome</label>
-                        <input className="ui input focus" type="text" />                
-                    </div>
-                    <div className='ui two bottom attached buttons'>
-                        <button className='ui basic blue button'>Salvar</button>
-                        <button className='ui basic red button'>Cancelar</button>
-                    </div>
-                </div>
-               </div>);
+        return(
+            <div className="row grid">
+                <div className="one wide column"></div>
+                <div className="three wide column"><a>Id</a></div>
+                <div className="four wide column"><a>Nome</a></div>                
+                <div className="four wide column"><a>Data de Alteração</a></div>                                
+                <div className="two wide column"></div>
+                <div className="two wide column"></div>
+            </div>);
+    }
+}
+
+class Detail extends React.Component{
+    render(){
+        return(<div className="row">
+                <div className="one wide column"></div>
+                <div className="three wide column"><a>100</a></div>
+                <div className="four wide column"><a>able</a></div>                
+                <div className="four wide column"><a>10/10/2017</a></div>                                
+                <div className="two wide column"><button className="ui basic green button">Abrir</button></div>
+                <div className="two wide column"><button className="ui basic red button">Excluir</button></div>
+               </div>)
     }
 }
 
