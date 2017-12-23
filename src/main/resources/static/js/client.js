@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 window.client = (function () {
   function getAllMasters(success)  {
-    return fetch('/masters', {
+    return fetch('/app/master', {
       headers: {
         Accept: 'application/json',
       },

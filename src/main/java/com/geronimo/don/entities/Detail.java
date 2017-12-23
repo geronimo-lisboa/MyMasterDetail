@@ -1,5 +1,6 @@
 package com.geronimo.don.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -48,6 +49,7 @@ public class Detail implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAlteracao;
     @JoinColumn(name = "id_master", referencedColumnName = "id")
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Master idMaster;
 

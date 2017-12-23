@@ -1,6 +1,9 @@
 package com.geronimo.don.rest;
 
+import com.geronimo.don.dataAccess.MasterRepository;
+import com.geronimo.don.entities.Master;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +22,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
  */
 @RestController
 public class MasterRestController {
+    @Autowired
+    private MasterRepository masterRepo;
     
+    @RequestMapping(path="/app/master", method=GET)
+    public Iterable<Master> findAll(){
+        Iterable<Master> lst = masterRepo.findAll();
+        return lst;
+    }
     @RequestMapping(path="/app/teste", method = GET)
     public List<Object> list() {
         return null;
