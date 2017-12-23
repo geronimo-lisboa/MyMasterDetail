@@ -73,18 +73,34 @@ class NewMasterForm extends React.Component{
 }
 
 class MasterList extends React.Component{
+    state={
+        ordering:'id',
+    };
     render(){
-        const masterList = this.props.masters.map(
-           (currentMaster)=>(
-               <Master 
-                    key={currentMaster.id}
-                    master={currentMaster} />
-           ));
-
+        const orderedMasterList = this.props.masters.sort(
+                (a,b)=>{
+                    //Ordena por id
+                    if(this.state.ordering==='id'){
+                        return a.id-b.id;
+                    }else 
+                    //Ordena por nome
+                    if(this.state.ordering==='name'){
+                        return a.nome.localeCompare(b.nome);
+                    }else{//Ordena por quantidade
+                        return (a.detailList.length - a.detailList.length);
+                    }
+                })
+                //Depois de ordenar, mapeia para a lista de componentes
+                .map((current)=>(
+                    <Master 
+                        key={current.id}
+                        master={current} 
+                    />
+                ));
         return(
             <div className="ui grid">
                 <MasterHeader/>
-                {masterList}
+                {orderedMasterList}
             </div>
         );
     }
