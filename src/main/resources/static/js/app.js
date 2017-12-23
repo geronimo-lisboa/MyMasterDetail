@@ -15,10 +15,36 @@ class MastersDashboard extends React.Component{
         return(
                 <div className="ui container">
                     <div className="ui dividing header">Master & Details</div>
+                    <NewMasterForm />
                     <MasterList 
                         masters={this.state.masters}
                     />
                 </div>);
+    }
+}
+
+class NewMasterForm extends React.Component{
+    state={
+        isOpen:false,
+    }
+    handleOpenFormClick = ()=>{this.setState({isOpen:true})};
+    handleCloseFormClick = ()=>{this.setState({isOpen:false})}  ;
+    render(){
+        if(this.state.isOpen===false){
+            return(<div className="ui grid">
+                    <div className="sixteen wide column">
+                        <i onClick={this.handleOpenFormClick} className="add circle icon"></i>
+                    </div>
+                   </div>);            
+        }
+        else{
+            return(<div className="ui grid">
+                    <div className="sixteen wide column">
+                        <i onClick={this.handleCloseFormClick} className="minus circle icon"></i>
+                    </div>
+                    <div>...</div>
+                    </div>);                        
+        }
     }
 }
 
@@ -59,7 +85,7 @@ class Master extends React.Component{
             <div className="row">
                 <div className="four wide column">{this.props.master.id}</div>
                 <div className="four wide column">{this.props.master.nome}</div>                
-                <div className="four wide column">0</div>                                
+                <div className="four wide column">{this.props.master.detailList.length}</div>                                
                 <div className="two wide column"><button className="ui basic green button">Abrir</button></div>
                 <div className="two wide column"><button className="ui basic red button">Excluir</button></div>
                 <div className="sixteen wide column">
