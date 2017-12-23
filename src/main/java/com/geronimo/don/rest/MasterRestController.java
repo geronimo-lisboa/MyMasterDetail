@@ -2,6 +2,7 @@ package com.geronimo.don.rest;
 
 import com.geronimo.don.dataAccess.MasterRepository;
 import com.geronimo.don.entities.Master;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,6 +29,7 @@ public class MasterRestController {
     @RequestMapping(path="/app/master", method=POST)
     public Master addMaster(@RequestBody Master input){
         input = masterRepo.save(input);
+        input.setDetailList(new ArrayList<>());
         return input;
     }
 

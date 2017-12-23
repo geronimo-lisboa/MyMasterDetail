@@ -13,7 +13,13 @@ class MastersDashboard extends React.Component{
     
     createNewMaster=(masterName)=>{
         const newMaster={nome:masterName,};
-        client.createMaster(newMaster,()=>(client.getAllMasters(this.updateMasters)) );
+        client.createMaster(newMaster,(createdMaster)=>{
+            let newList = this.state.masters.map((m)=>(m));
+            newList.push(createdMaster);
+            this.setState({masters:newList});
+            //client.getAllMasters(this.updateMasters)
+            //console.log(createdMaster);
+        });
     }
     
     render(){

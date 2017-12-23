@@ -20,6 +20,7 @@ window.client = (function () {
         'Content-Type': 'application/json',
       },
     }).then(checkStatus)
+      .then(parseJSON)
       .then(afterSave);
   } 
   
