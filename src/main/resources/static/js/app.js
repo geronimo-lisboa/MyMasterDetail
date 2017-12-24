@@ -230,9 +230,45 @@ class DetailTable extends React.Component{
                     key={currentDetail.id}/>
                 ));
         return(<div className="ui grid">
+                    <NewDetailForm />
                     <DetailHeader/>
                     {details}
                 </div>)
+    }
+}
+
+class NewDetailForm extends React.Component{
+    state={
+        isOpen:false,
+    };
+    handleOnOpenClick = ()=>{
+        this.setState({isOpen:true});
+    }
+    handleOnCloseClick=()=>{
+        this.setState({isOpen:false});
+    }
+    render(){
+        if(this.state.isOpen === false)
+        {
+        return(
+            <div className="ui sixteen wide column grid">
+                <div className="ui one wide column"></div>
+                <div className="fifteen one wide column">
+                    <i onClick={this.handleOnOpenClick} className="add circle icon"></i>
+                </div>
+            </div>
+        );
+        }
+        else{
+        return(
+            <div className="ui sixteen wide column grid">
+                <div className="ui one wide column"></div>
+                <div className="fifteen one wide column">
+                    <i onClick={this.handleOnCloseClick} className="minus circle icon"></i>
+                </div>
+            </div>
+        );
+        }
     }
 }
 
@@ -244,7 +280,9 @@ class DetailHeader extends React.Component{
                 <div className="three wide column"><a>Id</a></div>
                 <div className="four wide column"><a>Nome</a></div>                
                 <div className="four wide column"><a>Data de Alteração</a></div>                                
-                <div className="two wide column"></div>
+                <div className="two wide column">
+                
+                </div>
                 <div className="two wide column"></div>
             </div>);
     }
