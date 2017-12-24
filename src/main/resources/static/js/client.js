@@ -38,7 +38,7 @@ window.client = (function () {
   
   
   function deleteMaster(data,afterDelete) {
-    return fetch('/deleteMaster', {
+    return fetch('/app/master', {
       method: 'delete',
       body: JSON.stringify(data),
       headers: {
@@ -46,6 +46,7 @@ window.client = (function () {
         'Content-Type': 'application/json',
       },
     }).then(checkStatus)
+      .then(parseJSON)
       .then(afterDelete);
   }
     

@@ -17,8 +17,16 @@ class MastersDashboard extends React.Component{
             let newList = this.state.masters.map((m)=>(m));
             newList.push(createdMaster);
             this.setState({masters:newList});
-            //client.getAllMasters(this.updateMasters)
-            //console.log(createdMaster);
+        });
+    }
+    
+    deleteMaster=(masterToDie)=>{
+        //timers.filter(t => t.id !== timerId),
+        client.deleteMaster(masterToDie,(deletedMaster)=>{
+            const updatedList = this.state.masters.filter((m)=>(
+                    m.id !== deletedMaster.id
+                    ));
+            this.setState({masters:updatedList});
         });
     }
     
@@ -30,6 +38,7 @@ class MastersDashboard extends React.Component{
                         createNewMaster={this.createNewMaster}/>
                     <MasterList 
                         masters={this.state.masters}
+                        deleteMaster={this.deleteMaster}
                     />
                 </div>);
     }
@@ -104,6 +113,7 @@ class MasterList extends React.Component{
                     <Master 
                         key={current.id}
                         master={current} 
+                        deleteMaster={this.props.deleteMaster}
                     />
                 ));
         return(
@@ -132,26 +142,54 @@ class MasterHeader extends React.Component{
 }
 
 class Master extends React.Component{
+    state={
+        areDetailsVisible : false,
+    };
+    handleDeleteMaster = ()=>{
+        this.props.deleteMaster(this.props.master);
+    }
+    handleAbrirClick = ()=>{
+        this.setState({areDetailsVisible:true});
+    }
+    handleFecharClick=()=>{
+        this.setState({areDetailsVisible:false});
+    }
     render(){
+        if(this.state.areDetailsVisible === true)
+        {
         return(
             <div className="row">
                 <div className="four wide column">{this.props.master.id}</div>
                 <div className="four wide column">{this.props.master.nome}</div>                
                 <div className="four wide column">{this.props.master.detailList.length}</div>                                
-                <div className="two wide column"><button className="ui basic green button">Abrir</button></div>
-                <div className="two wide column"><button className="ui basic red button">Excluir</button></div>
+                <div className="two wide column">
+                    <button className="ui basic green button" onClick={this.handleFecharClick}>Fechar</button></div>
+                <div className="two wide column">
+                    <button className="ui basic red button"onClick={this.handleDeleteMaster}>Excluir</button></div>
                 <div className="sixteen wide column">
                     <DetailTable 
                     details={this.props.master.detailList}/>
                 </div>
             </div>
         );
+        }else{
+            return(<div className="row">
+                <div className="four wide column">{this.props.master.id}</div>
+                <div className="four wide column">{this.props.master.nome}</div>                
+                <div className="four wide column">{this.props.master.detailList.length}</div>                                
+                <div className="two wide column">
+                    <button className="ui basic green button" onClick={this.handleAbrirClick}>Abrir</button></div>
+                <div className="two wide column">
+                    <button className="ui basic red button"onClick={this.handleDeleteMaster}>Excluir</button></div>
+            </div>  
+            );
+        }
     }
 }
 
 class DetailTable extends React.Component{
     state={
-        details:[]
+        details:[],
     };
     
     componentDidMount(){
@@ -162,6 +200,7 @@ class DetailTable extends React.Component{
     }
     
     render(){
+        //Se isExpanded = false, esconde, senão exibe
         const details = this.state.details.map((currentDetail)=>(
                 <Detail 
                     detail={currentDetail}
