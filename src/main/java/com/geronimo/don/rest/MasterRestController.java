@@ -16,6 +16,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.web.bind.annotation.RequestMethod.PATCH;
 
 /**
  *
@@ -25,6 +26,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 public class MasterRestController {
     @Autowired
     private MasterRepository masterRepo;
+    
+    @RequestMapping(path="/app/master", method=PATCH)
+    public Master updateSingleMaster(@RequestBody Master input){
+        input = masterRepo.save(input);
+        return input;
+    }
+    
     @RequestMapping(path="/app/master", method=DELETE)
     public Master deleteMaster(@RequestBody Master input){
         masterRepo.delete(input);

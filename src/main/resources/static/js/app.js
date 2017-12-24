@@ -10,6 +10,16 @@ class MastersDashboard extends React.Component{
     updateMasters=(masterList)=>{
         this.setState({masters:masterList});
     };
+
+    updateSingleMaster=(master)=>{
+        //Pega o master que eu recebi e troca o conteúdo
+        client.updateMaster(master,(updatedMaster)=>{
+            //TODO - Fazer a atualização do master
+            let listaAtualizada = this.state.masters.filter((m)=>(m.id !== updatedMaster.id));
+            listaAtualizada.push(master);
+            this.setState({masters:listaAtualizada});
+        });
+    }
     
     createNewMaster=(masterName)=>{
         const newMaster={nome:masterName,};
@@ -39,6 +49,7 @@ class MastersDashboard extends React.Component{
                     <MasterList 
                         masters={this.state.masters}
                         deleteMaster={this.deleteMaster}
+                        updateSingleMaster={this.updateSingleMaster}
                     />
                 </div>);
     }
@@ -114,6 +125,7 @@ class MasterList extends React.Component{
                         key={current.id}
                         master={current} 
                         deleteMaster={this.props.deleteMaster}
+                        updateSingleMaster={this.props.updateSingleMaster}
                     />
                 ));
         return(
@@ -154,13 +166,22 @@ class Master extends React.Component{
     handleFecharClick=()=>{
         this.setState({areDetailsVisible:false});
     }
+    handleChangeMasterName = (e)=>{
+        const changedMaster = Object.assign({}, this.props.master,{nome:e.target.value});
+        this.props.updateSingleMaster(changedMaster);
+    }
     render(){
         if(this.state.areDetailsVisible === true)
         {
+        //TODO: Melhorar o estudo da textbox.
         return(
             <div className="row">
                 <div className="four wide column">{this.props.master.id}</div>
-                <div className="four wide column">{this.props.master.nome}</div>                
+                <div className="four wide column">
+                    <input type="text" 
+                        value={this.props.master.nome} 
+                        onChange={this.handleChangeMasterName}/>
+                </div>                
                 <div className="four wide column">{this.props.master.detailList.length}</div>                                
                 <div className="two wide column">
                     <button className="ui basic green button" onClick={this.handleFecharClick}>Fechar</button></div>
@@ -175,7 +196,9 @@ class Master extends React.Component{
         }else{
             return(<div className="row">
                 <div className="four wide column">{this.props.master.id}</div>
-                <div className="four wide column">{this.props.master.nome}</div>                
+                <div className="four wide column">
+                    {this.props.master.nome}
+                </div>                
                 <div className="four wide column">{this.props.master.detailList.length}</div>                                
                 <div className="two wide column">
                     <button className="ui basic green button" onClick={this.handleAbrirClick}>Abrir</button></div>

@@ -25,14 +25,15 @@ window.client = (function () {
   } 
   
   function updateMaster(data, afterSave) {
-    return fetch('/masters', {
-      method: 'put',
+    return fetch('/app/master', {
+      method: 'PATCH',
       body: JSON.stringify(data),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
     }).then(checkStatus)
+      .then(parseJSON)
       .then(afterSave);
   }
   
